@@ -1,0 +1,18 @@
+<div style="widows: 100%">
+    <table style="width:100%">
+        <tr style="text-align: center">
+            <th>Id</th>
+            <th>Placa</th>
+            <th>Tipo</th>
+            <th>Fecha Entrada</th>
+        </tr>
+        <tr *ngFor="let c of listaCobros">
+            <td>{{c.id}}</td>
+            <td>{{c.placa}}</td>
+            <td>{{c.tipo}}</td>
+            <td>{{c.fechaEntrada | date :'medium'}}</td>
+        </tr>
+    </table>
+</div>
+
+

@@ -6,6 +6,7 @@
             <th scope="col">Placa</th>
             <th scope="col">Tipo</th>
             <th scope="col">Fecha Entrada</th>
+            <th scope="col">&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
             <td>{{c.placa}}</td>
             <td>{{c.tipo}}</td>
             <td>{{c.fechaEntrada | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td><button type="button" class="btn btn-primary">Salida</button></td>
         </tr>
     </tbody>
 </table>

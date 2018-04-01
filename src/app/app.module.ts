@@ -5,11 +5,13 @@ import {HttpModule}   from '@angular/http'
 
 import { AppComponent } from './app.component';
 import {ListaCobroComponente} from './lista-cobro/lista-cobro.componente';
+import {ServicioComponente } from './servicio/servicio.componente';
+import { EntradaComponente}  from './entrada/entrada.componente';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ListaCobroComponente
+    AppComponent, ListaCobroComponente,ServicioComponente,EntradaComponente
   ],
   imports: [
     BrowserModule,HttpModule

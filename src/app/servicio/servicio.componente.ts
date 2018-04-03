@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component,EventEmitter, Output} from '@angular/core';
 
 @Component(
     {
@@ -7,5 +7,14 @@ import { Component} from '@angular/core';
     }
 )
 export class ServicioComponente {
+
+    @Output() 
+    mostrarRegistroEntradaEvent = new EventEmitter();
+    
+
+    mostrarRegistroEntrada(){
+        this.mostrarRegistroEntradaEvent.emit();
+    }
+
 
 }

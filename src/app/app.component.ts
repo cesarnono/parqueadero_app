@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  showEntrada:boolean=true;
+  verRegistroEntrada:boolean=false;
+
+  mostrarRegistroEntrada(){
+    this.verRegistroEntrada = true;
+  }
+   
+
 }

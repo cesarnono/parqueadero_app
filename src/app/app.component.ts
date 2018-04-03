@@ -26,15 +26,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.listarCobros('PENDIENTE');
+    //this.entradaRegistrada = new Cobro();
+    this.placa = "";
+    this.cilindraje="";
   }
 
   registrarEntrada() {
     let servicio: Servicio = this.crearSolicitudServicio();
     this.entradaService.registrarEntrada(servicio).subscribe(res => {
       this.entradaRegistrada = res;
-      if (!this.entradaRegistrada.error) {
-        this.placa = "";
-        this.cilindraje = "";
+      if (!this.entradaRegistrada.error) {        
         this.ngOnInit();
       }
 
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit {
     let servicio: Servicio = new Servicio();
     let solicitud: Solicitud = new Solicitud();
     solicitud.placa = this.placa;
-    solicitud.cilindraje = this.cilindraje;
+    solicitud.cilindraje = this.cilindraje ? this.cilindraje:null;
     solicitud.tipo = this.cilindraje ? "moto" : "carro";
     servicio = new Servicio();
     servicio.solicitudServicio = solicitud;

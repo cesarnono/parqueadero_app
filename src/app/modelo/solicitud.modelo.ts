@@ -1,5 +1,5 @@
 export class Solicitud {
     placa : string;
-    cilindraje : number;    
+    cilindraje : string;    
     tipo:string;
 }

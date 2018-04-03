@@ -8,11 +8,12 @@ import { AppComponent } from './app.component';
 import {ListaCobroComponente} from './lista-cobro/lista-cobro.componente';
 import {ServicioComponente } from './servicio/servicio.componente';
 import { EntradaComponente}  from './entrada/entrada.componente';
+import { SalidaComponente}  from './salida/salida.componente';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ListaCobroComponente,ServicioComponente,EntradaComponente
+    AppComponent, ListaCobroComponente,ServicioComponente,EntradaComponente,SalidaComponente
   ],
   imports: [
     BrowserModule,HttpModule,FormsModule

@@ -9,11 +9,9 @@ import {Cobro} from '../modelo/cobro.modelo'
     }
 )
 export class ListaCobroComponente implements OnInit{
-  private listaCobros: Cobro[];
-  
+  private listaCobros: Cobro[];  
 
    constructor(private listaCobroService:ListaCobroServicio){
-
    }
 
    ngOnInit(){
@@ -25,4 +23,9 @@ export class ListaCobroComponente implements OnInit{
          this.listaCobros = data;
       });
    }
+
+   listarCobrosPendientes(){
+    this.listarCobros('PENDIENTE');
+   }
+
 }

@@ -1,23 +1,55 @@
-import { Component} from '@angular/core';
-import { Solicitud} from '../modelo/solicitud.modelo'
+import { Component,EventEmitter, Output} from '@angular/core';
+import { Solicitud } from '../modelo/solicitud.modelo'
+import {Servicio} from '../modelo/servicio.modelo'
+import {Cobro} from '../modelo/cobro.modelo'
+import {EntradaService} from './entrada.service'
+import {ListaCobroComponente } from '../lista-cobro/lista-cobro.componente';
+import {ListaCobroServicio} from '../lista-cobro/lista-cobro.service';
 
 
 @Component({
     selector: 'entrada-parqueadero',
-    templateUrl: './entrada.componente.html'
+    templateUrl: './entrada.componente.html',
+    providers: [EntradaService,ListaCobroComponente,ListaCobroServicio]
+
 })
 export class EntradaComponente {
-   private solicitud : Solicitud;
+    private entradaRegistrada: Cobro= new Cobro();
 
-   private placa :string;
-   private cilindraje:number;
+    private placa: string;
+    private cilindraje: string;    
 
-    validarDisponibilidadServicio(){
-         this.solicitud = new Solicitud();
-         this.solicitud.placa = this.placa;
-         this.solicitud.cilindraje = this.cilindraje;
-         console.log(this.solicitud.placa);
-         console.log( this.solicitud.cilindraje);
+    constructor(private entradaService : EntradaService,private listaCobroComponente:ListaCobroComponente){
+        
     }
-    
+
+    registrarEntrada() {
+       let servicio :Servicio = this.crearSolicitudServicio();
+       this.entradaService.registrarEntrada(servicio).subscribe(res =>{
+         this.entradaRegistrada = res;
+         if(!this.entradaRegistrada.error){
+             this.placa = ""; 
+             this.cilindraje = "";    
+             this.recargarListadoCobrosPendientes();         
+         }
+        
+       });
+    }
+
+    crearSolicitudServicio(): Servicio {
+        let servicio :Servicio = new Servicio();
+        let solicitud:Solicitud = new Solicitud();
+        solicitud.placa = this.placa;
+        solicitud.cilindraje = this.cilindraje;        
+        solicitud.tipo = this.cilindraje ? "moto":"carro";
+        servicio = new Servicio();
+        servicio.solicitudServicio = solicitud;
+        console.log(servicio);       
+        return servicio;
+    }
+
+    recargarListadoCobrosPendientes(){
+        this.listaCobroComponente.ngOnInit();
+    }
+
 }

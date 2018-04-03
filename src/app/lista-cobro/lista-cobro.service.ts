@@ -19,6 +19,7 @@ export class ListaCobroServicio {
                 cobro.placa = item.placa;
                 cobro.tipo = item.servicio.descripcion
                 cobro.fechaEntrada = item.fechaEntrada;
+                cobro.cilindraje = item.cilindraje;
                 return cobro;
             }
             )

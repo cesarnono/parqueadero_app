@@ -17,47 +17,49 @@
                     <label class="col-form-label">Cilindraje(En caso de motocicleta)</label>
                     <input type="text" class="form-control" placeholder="Ingrese el cilindraje" name="cilindraje" [(ngModel)]="cilindraje" />
                 </div>
-                <button type="button" class="btn btn-primary" *ngIf="placa"  (click)="registrarEntrada()">Enviar</button>
+                <button type="button" class="btn btn-primary" *ngIf="placa" (click)="registrarEntrada()">Enviar</button>
             </fieldset>
         </form>
         <hr>
 
         <div class="alert alert-dismissible alert-success" *ngIf="entradaRegistrada.id">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Entrada registrada!</strong> para vehiculo con placa {{entradaRegistrada.placa}}.
+            <strong>Entrada registrada!</strong> para vehiculo con placa
+            <strong>{{entradaRegistrada.placa}}</strong>.
         </div>
 
         <div class="alert alert-dismissible alert-danger" *ngIf="entradaRegistrada.error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Ha ocurrido un error!</strong> {{entradaRegistrada.error}}.
         </div>
     </div>
     <div class="col-6">
         <fieldset>
             <legend>Lista de Cobros</legend>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
 
-                        <th scope="col">Id</th>
-                        <th scope="col">Placa</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Fecha Entrada</th>
-                        <th scope="col">&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let c of listaCobros">
-                        <td>{{c.id}}</td>
-                        <td>{{c.placa}}</td>
-                        <td>{{c.tipo}}</td>
-                        <td>{{c.fechaEntrada | date: 'dd/MM/yyyy HH:mm'}}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary" (click)="seleccionarCobroSalida(c)">Salida</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            <th scope="col">Id</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Fecha Entrada</th>
+                            <th scope="col">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of listaCobros">
+                            <td>{{c.id}}</td>
+                            <td>{{c.placa}}</td>
+                            <td>{{c.tipo}}</td>
+                            <td>{{c.fechaEntrada | date: 'dd/MM/yyyy HH:mm'}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm" (click)="seleccionarCobroSalida(c)">Salida</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </fieldset>
 
     </div>
@@ -71,24 +73,25 @@
                 </div>
                 <div class="form-group">
                     <label>Cilindraje</label>:
-                    <strong>{{cobroSalida.cilindraje}}</strong> 
+                    <strong>{{cobroSalida.cilindraje}}</strong>
                 </div>
                 <div class="form-group">
                     <label>Fecha entrada</label>:
                     <strong>{{cobroSalida.fechaEntrada | date: 'dd/MM/yyyy HH:mm'}}</strong>
                 </div>
-                <button type="button" class="btn btn-primary" (click)="registrarSalida()">Registrar</button>
+                <button type="button" class="btn btn-primary" *ngIf="!cobroSalida.fechaSalida && cobroSalida.id " (click)="registrarSalida()">Registrar</button>
             </fieldset>
         </form>
         <hr>
         <div class="alert alert-dismissible alert-success" *ngIf="cobroSalida.fechaSalida">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Salida registrada!</strong> para vehiculo con placa {{cobroSalida.placa}}, el tiempo del servicio fueron {{cobroSalida.descripcionTiempoServicio}}
-            y el valor a pagar es: ${{cobroSalida.valorServicio}}
+            <strong>Salida registrada!</strong> para vehiculo con placa
+            <strong>{{cobroSalida.placa}}</strong>, el tiempo del servicio fueron
+            <strong>{{cobroSalida.descripcionTiempoServicio}}</strong>
+            y el valor a pagar es:
+            <strong>${{cobroSalida.valorServicio}}</strong>
         </div>
 
         <div class="alert alert-dismissible alert-danger" *ngIf="cobroSalida.error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Ha ocurrido un error!</strong> {{cobroSalida.error}}.
         </div>
     </div>

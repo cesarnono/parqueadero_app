@@ -15,26 +15,26 @@ import {ListaCobroServicio} from '../lista-cobro/lista-cobro.service';
 })
 export class EntradaComponente {
     private entradaRegistrada: Cobro= new Cobro();
-
     private placa: string;
     private cilindraje: string;    
+
+    @Output() addEntradaEvent = new EventEmitter<string>();
 
     constructor(private entradaService : EntradaService,private listaCobroComponente:ListaCobroComponente){
         
     }
 
     registrarEntrada() {
-       let servicio :Servicio = this.crearSolicitudServicio();
-       this.entradaService.registrarEntrada(servicio).subscribe(res =>{
-         this.entradaRegistrada = res;
-         if(!this.entradaRegistrada.error){
-             this.placa = ""; 
-             this.cilindraje = "";    
-             this.recargarListadoCobrosPendientes();         
-         }
-        
-       });
-    }
+        let servicio: Servicio = this.crearSolicitudServicio();
+        this.entradaService.registrarEntrada(servicio).subscribe(res => {
+          this.entradaRegistrada = res;
+          if (!this.entradaRegistrada.error) {        
+            //this.ngOnInit();
+            this.addEntradaEvent.emit('PENDIENTE');
+          }
+    
+        });
+      }
 
     crearSolicitudServicio(): Servicio {
         let servicio :Servicio = new Servicio();

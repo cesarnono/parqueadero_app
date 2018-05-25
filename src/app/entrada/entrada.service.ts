@@ -28,14 +28,4 @@ export class EntradaService {
             return cobro;
         })
     }
-
-   /* private manejarErrorObservable(error: Response | any) {
-        console.error(error.message || error);
-        return Observable.throw(error.message || error);
-    }*/
-
-    /* private extraerDatos(res:Response,index:number){
-       let body  = res.json();
-       return body || {};
-     }*/
 }

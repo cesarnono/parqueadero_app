@@ -1,21 +1,32 @@
-<table class="table table-hover">
-    <thead>
-        <tr >
+<div>
+    <fieldset>
+        <legend>Lista de Cobros</legend>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
 
-            <th scope="col">Id</th>
-            <th scope="col">Placa</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Fecha Entrada</th>
-            <th scope="col">&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let c of listaCobros">
-            <td>{{c.id}}</td>
-            <td>{{c.placa}}</td>
-            <td>{{c.tipo}}</td>
-            <td>{{c.fechaEntrada | date: 'dd/MM/yyyy HH:mm'}}</td>
-            <td><button type="button" class="btn btn-primary">Salida</button></td>
-        </tr>
-    </tbody>
-</table>
+                        <th scope="col">Id</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Fecha Entrada</th>
+                        <th scope="col">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of listaCobros">
+                        <td>{{c.id}}</td>
+                        <td>{{c.placa}}</td>
+                        <td>{{c.tipo}}</td>
+                        <td>{{c.fechaEntrada | date: 'dd/MM/yyyy HH:mm'}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" (click)="seleccionarCobroSalida(c)">Salida</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </fieldset>
+
+</div>

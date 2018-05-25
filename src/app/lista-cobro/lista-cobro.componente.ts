@@ -1,4 +1,4 @@
-import { Component,OnInit} from '@angular/core';
+import { Component,OnInit,Input,Output,EventEmitter} from '@angular/core';
 import {ListaCobroServicio} from './lista-cobro.service'
 import {Cobro} from '../modelo/cobro.modelo'
 @Component(
@@ -9,23 +9,21 @@ import {Cobro} from '../modelo/cobro.modelo'
     }
 )
 export class ListaCobroComponente implements OnInit{
-  private listaCobros: Cobro[];  
+  @Input() listaCobros: Cobro[];  
+  //private cobroSalida: Cobro = new Cobro();
+
+  @Output() selectedCobroEmitter = new EventEmitter<Cobro>();
 
    constructor(private listaCobroService:ListaCobroServicio){
    }
 
    ngOnInit(){
-       this.listarCobros('PENDIENTE');
+      // this.listarCobros('PENDIENTE');
    }
-
-   listarCobros(estado:string){
-      this.listaCobroService.getListaCobros(estado).subscribe(data =>{
-         this.listaCobros = data;
-      });
-   }
-
-   listarCobrosPendientes(){
-    this.listarCobros('PENDIENTE');
-   }
+   
+   seleccionarCobroSalida(cobroSalida: Cobro) {
+    //this.cobroSalida = cobroSalida;
+    this.selectedCobroEmitter.emit(cobroSalida);
+  }
 
 }
